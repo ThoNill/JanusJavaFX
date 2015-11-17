@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DIALOG page="TestPage" title="Test" >
+
+	<STRINGSET>
+		<STRING name="string1" source="string2,string3" />
+		<STRING name="string2" />
+		<STRING name="string3" />
+	</STRINGSET>
+
+
+	<BEAN name="bean" class="org.janus.actions.EmptyAction"
+		updateEqualVars="true">
+		<CALL name="start" command="command" test="false">
+			<SET var="dir" to="string1" />
+			<SET var="dir" to="string2" />
+			<SET var="dir" to="string3" />
+		</CALL>
+	</BEAN>
+
+
+
+</DIALOG>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DIALOG page="ButtonPage" title="Test">
+
+
+
+
+	<GUI>
+
+		<VBOX background="green">
+			<GLUE />
+
+			<LABEL text="Test" />
+
+
+			<HBOX>
+				<LABEL text="Name1" />
+				<GLUE />
+				<LABEL text="Name2" />
+			</HBOX>
+
+			<GLUE>
+				<VBOX background="red">
+					<GLUE />
+					<HBOX background="blue">
+						<LABEL text="Name1" />
+						<GLUE />
+						<LABEL text="Name2" />
+						<GLUE />
+					</HBOX>
+				</VBOX>
+			</GLUE>
+			<GLUE>
+				<VBOX>
+					<GLUE />
+					<HBOX background="blue">
+						<LABEL text="Name1" />
+						<GLUE />
+						<LABEL text="Name2" />
+						<GLUE />
+					</HBOX>
+				</VBOX>
+			</GLUE>
+		</VBOX>
+
+	</GUI>
+
+</DIALOG>

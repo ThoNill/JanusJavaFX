@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DIALOG page="ButtonPage" title="Test">
+
+
+
+	<STRING name="x" />
+	<ACTION name="next" class="builder.test.AddValue" step="1"
+		value="x" />
+
+	<ACTION name="prev" class="builder.test.AddValue" step="-1"
+		value="x" />
+
+
+	<GUI>
+		<MENUBAR>
+			<MENU text="Menu1">
+				<MENUITEM name="next" text="Weiter" />
+				<MENU text="SubMenu">
+					<MENUITEM name="next" text="Weiter" />
+				</MENU>
+			</MENU>
+		</MENUBAR>
+
+
+
+		<LABEL text="Test">
+			<EVENT name="MOUSE_IN" action="next" />
+			<EVENT name="MOUSE_OUT" action="prev" />
+		</LABEL>
+
+		<TEXTFIELD name="x">
+			<EVENT name="UP" action="next" />
+			<EVENT name="DOWN" action="prev" />
+		</TEXTFIELD>
+
+		<BUTTON name="next" text="Weiter" />
+
+		<POPUP text="Menu1">
+			<MENUITEM name="next" text="Weiter" />
+			<MENU text="SubMenu">
+				<MENUITEM name="next" text="Weiter" />
+			</MENU>
+		</POPUP>
+		
+	</GUI>
+
+</DIALOG>

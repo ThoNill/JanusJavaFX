@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DIALOG 	page="TestPage" title="Test">
+
+	<STRINGSET>
+		<STRING name="string1" />
+		<STRING name="string2" />
+		<STRING name="string3" source="string1,string2" />
+	</STRINGSET>
+
+
+
+
+	<GUI>
+
+		<VBOX>
+			<LABEL text="Test" />
+			<HBOX>
+				<VBOX>
+					<LABEL text="string1" />
+					<TEXTFIELD name="string1" />
+				</VBOX>
+				<VBOX>
+					<LABEL text="string2" />
+					<TEXTFIELD name="string2" />
+					<LABEL text="string2" />
+				</VBOX>
+				<VBOX>
+					<LABEL text="string3" />
+					<TEXTFIELD name="string3" />
+				</VBOX>
+			</HBOX>
+		</VBOX>
+
+	</GUI>
+
+</DIALOG>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DIALOG page="login" title="TLogin">
+
+	<STRING name="name" />
+	<STRING name="pass" />
+
+	<GUI>
+
+		<VBOX>
+			<LABEL text="Login" />
+			
+				<HBOX>
+					<LABEL text="Name" />
+					<TEXTFIELD name="name" />
+				</HBOX>
+				<HBOX>
+					<LABEL text="Passwort" />
+					<TEXTFIELD name="pass" />
+
+				</HBOX>
+
+		</VBOX>
+
+	</GUI>
+</DIALOG>
