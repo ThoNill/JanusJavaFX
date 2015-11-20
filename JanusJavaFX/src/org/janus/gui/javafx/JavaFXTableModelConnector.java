@@ -7,13 +7,13 @@ import org.janus.gui.enums.GuiType;
 import org.janus.table.DefaultExtendedTableWrapper;
 import org.janus.table.ExtendedTableModel;
 
-public abstract class SwtTableModelConnector extends JavaFXBasisConnector {
+public abstract class JavaFXTableModelConnector extends JavaFXBasisConnector {
 
 	private ExtendedTableModel tableModel = null;
 	private int lastRow = -1;
 	protected DefaultExtendedTableWrapper tableWrapper;
 
-	public SwtTableModelConnector(GuiType type, Object component) {
+	public JavaFXTableModelConnector(GuiType type, Object component) {
 		super(type, component);
 	}
 

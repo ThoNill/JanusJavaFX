@@ -18,7 +18,7 @@ import org.janus.table.ExtendedTableModel;
  * @author
  * @version %I%, %G%
  */
-public class RadioConnector extends SwtTableModelConnector implements
+public class RadioConnector extends JavaFXTableModelConnector implements
 		ChangeListener<Toggle> {
 	
 	/**

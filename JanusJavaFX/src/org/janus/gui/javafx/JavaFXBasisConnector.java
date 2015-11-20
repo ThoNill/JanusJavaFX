@@ -1,6 +1,7 @@
 package org.janus.gui.javafx;
 
 import javafx.scene.control.Button;
+
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Control;
 import javafx.scene.control.Labeled;
@@ -21,9 +22,6 @@ import java.util.Vector;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-
-import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
 
 import org.janus.data.DataContext;
 import org.janus.dict.actions.ActionDictionary;
@@ -97,8 +95,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 			break;
 		case BACKGROUND:
 			this.background = (Color) value;
-			setBackground(this.background);
-
+			setBackgroundColor(this.background);
 			break;
 		case FOREGROUND:
 			this.foreground = (Color) value;
@@ -156,6 +153,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 								Insets.EMPTY)));
 	}
 
+
 	private void setComponentLabel(String value) {
 		if (value != null && !(component instanceof MenuItem)
 				&& !(component instanceof Menu)
@@ -167,20 +165,28 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 		}
 
 	}
+	@Override
+	public void setForeground(Color foreground) {
+		setFieldInGuiThread(GuiField.FOREGROUND, foreground);
+	}
+	
+	@Override
+	public void setBackground(Color c) {
+		setFieldInGuiThread(GuiField.BACKGROUND, c);
+		
+	}
 
-	protected void setFieldInSwingThread(GuiField field, Serializable value) {
-		if (SwingUtilities.isEventDispatchThread()) {
+	protected void setFieldInGuiThread(GuiField field, Serializable value) {
+		if (Platform.isFxApplicationThread()) {
 			setField(field, value);
 		} else {
-
-			SwingUtilities.invokeLater(new Runnable() {
+			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
 					setField(field, value);
 				}
 			});
 		}
-
 	}
 
 	@Override
@@ -265,7 +271,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 
 	@Override
 	public void setFont(Font font) {
-		setFieldInSwingThread(GuiField.FONT, font);
+		setFieldInGuiThread(GuiField.FONT, font);
 	}
 
 	@Override
@@ -273,16 +279,6 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 		return foreground;
 	}
 
-	@Override
-	public void setForeground(Color foreground) {
-		setFieldInSwingThread(GuiField.FOREGROUND, foreground);
-	}
-
-	@Override
-	public void setBackground(Color c) {
-		setFieldInSwingThread(GuiField.BACKGROUND, c);
-
-	}
 
 	@Override
 	public Color getBackground() {
@@ -291,7 +287,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 
 	@Override
 	public void setEnabled(boolean b) {
-		setFieldInSwingThread(GuiField.ENABLED, b);
+		setFieldInGuiThread(GuiField.ENABLED, b);
 
 	}
 
@@ -302,7 +298,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 
 	@Override
 	public void setVisible(boolean b) {
-		setFieldInSwingThread(GuiField.VISIBLE, b);
+		setFieldInGuiThread(GuiField.VISIBLE, b);
 	}
 
 	@Override
@@ -312,7 +308,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 
 	@Override
 	public void setFocus(boolean b) {
-		setFieldInSwingThread(GuiField.FOCUS, b);
+		setFieldInGuiThread(GuiField.FOCUS, b);
 	}
 
 	@Override
@@ -332,7 +328,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 
 	@Override
 	public void setLabel(String t) {
-		setFieldInSwingThread(GuiField.LABEL, t);
+		setFieldInGuiThread(GuiField.LABEL, t);
 	}
 
 	@Override
@@ -345,20 +341,20 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 
 	@Override
 	public void setTooltip(String t) {
-		setFieldInSwingThread(GuiField.TOOLTIP, t);
+		setFieldInGuiThread(GuiField.TOOLTIP, t);
 	}
 
 	@Override
 	public String getTooltip() {
-		if (component instanceof JComponent) {
-			return ((JComponent) component).getToolTipText();
+		if (getControl() != null &&  getControl().getTooltip() != null ) {
+			return getControl().getTooltip().getText();
 		}
-		return null;
+		return "";
 	}
 
 	@Override
 	public void setWidth(float w) {
-		setFieldInSwingThread(GuiField.WIDTH, new Float(w));
+		setFieldInGuiThread(GuiField.WIDTH, new Float(w));
 
 	}
 
@@ -369,7 +365,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 
 	@Override
 	public void setHeight(float h) {
-		setFieldInSwingThread(GuiField.HEIGHT, new Float(h));
+		setFieldInGuiThread(GuiField.HEIGHT, new Float(h));
 
 	}
 
@@ -385,7 +381,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 
 	@Override
 	public void setX(float x) {
-		setFieldInSwingThread(GuiField.X, new Float(x));
+		setFieldInGuiThread(GuiField.X, new Float(x));
 	}
 
 	@Override
@@ -395,7 +391,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 
 	@Override
 	public void setY(float y) {
-		setFieldInSwingThread(GuiField.Y, new Float(y));
+		setFieldInGuiThread(GuiField.Y, new Float(y));
 
 	}
 
@@ -501,9 +497,10 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 	}
 
 	public void setEventActionList(EventActionBinderList eventActionList) {
-		if (component instanceof JComponent && eventActionList.size() > 0) {
+		Node node = getNode();
+		if (node != null && eventActionList.size() > 0) {
 			this.eventActionList = eventActionList;
-			eventActionList.register((JComponent) component);
+			eventActionList.register(node);
 		}
 	}
 

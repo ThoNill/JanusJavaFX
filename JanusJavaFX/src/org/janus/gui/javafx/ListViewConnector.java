@@ -19,7 +19,7 @@ import org.janus.table.ExtendedTableModel;
  * @author
  * @version %I%, %G%
  */
-public class ListViewConnector extends SwtTableModelConnector implements
+public class ListViewConnector extends JavaFXTableModelConnector implements
 		ChangeListener {
 
 	/**

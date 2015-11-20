@@ -2,6 +2,8 @@ package allgemein;
 
 import java.util.Vector;
 
+import javafx.scene.Node;
+
 import javax.swing.JComponent;
 
 import org.janus.data.DataContext;
@@ -17,7 +19,7 @@ public class EventActionBinderList {
 		list.addElement(obj);
 	}
 
-	public void register(JComponent component) {
+	public void register(Node component) {
 		for( EventActionBinder b : list) {
 			b.register(component);
 		}

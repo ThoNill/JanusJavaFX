@@ -26,7 +26,7 @@ import org.janus.table.ExtendedTableModel;
  * @author
  * @version %I%, %G%
  */
-public class TableViewConnector extends SwtTableModelConnector implements
+public class TableViewConnector extends JavaFXTableModelConnector implements
 		 ChangeListener {
 
 	/**

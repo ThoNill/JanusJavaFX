@@ -19,7 +19,7 @@ import org.janus.table.ExtendedTableModel;
  * @author
  * @version %I%, %G%
  */
-public class ComboBoxConnector extends SwtTableModelConnector implements ChangeListener {
+public class ComboBoxConnector extends JavaFXTableModelConnector implements ChangeListener {
 	/**
 	 * Constructor declaration
 	 * 
