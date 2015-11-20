@@ -153,7 +153,6 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 								Insets.EMPTY)));
 	}
 
-
 	private void setComponentLabel(String value) {
 		if (value != null && !(component instanceof MenuItem)
 				&& !(component instanceof Menu)
@@ -165,15 +164,16 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 		}
 
 	}
+
 	@Override
 	public void setForeground(Color foreground) {
 		setFieldInGuiThread(GuiField.FOREGROUND, foreground);
 	}
-	
+
 	@Override
 	public void setBackground(Color c) {
 		setFieldInGuiThread(GuiField.BACKGROUND, c);
-		
+
 	}
 
 	protected void setFieldInGuiThread(GuiField field, Serializable value) {
@@ -225,7 +225,10 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 	}
 
 	protected Node getNode() {
-		return (Node) component;
+		if (component instanceof Node) {
+			return (Node) component;
+		}
+		return null;
 	}
 
 	protected Object getUpdateComponent() {
@@ -278,7 +281,6 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 	public Color getForeground() {
 		return foreground;
 	}
-
 
 	@Override
 	public Color getBackground() {
@@ -346,7 +348,7 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
 
 	@Override
 	public String getTooltip() {
-		if (getControl() != null &&  getControl().getTooltip() != null ) {
+		if (getControl() != null && getControl().getTooltip() != null) {
 			return getControl().getTooltip().getText();
 		}
 		return "";

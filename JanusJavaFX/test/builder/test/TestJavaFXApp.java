@@ -12,13 +12,13 @@ import org.janus.gui.javafx.StageConnector;
 import org.janus.gui.javafx.builder.JavaFXGuiElementBuilder;
 import org.junit.Assert;
 
-public class TestSwtApp extends Application {
+public class TestJavaFXApp extends Application {
 	
     public static void main(String[] args) {
         launch(args);
     }
     
-	public TestSwtApp() {
+	public TestJavaFXApp() {
 		// TODO Auto-generated constructor stub
 	}
 
