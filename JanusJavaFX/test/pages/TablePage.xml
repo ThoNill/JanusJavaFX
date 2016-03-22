@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<DIALOG 	page="TestPage" title="Test" >
+<DIALOG page="TestPage" title="Test">
 
 
 
 	<MAPTABLE name="tabelle">
-	    <ENTRY value="0" text="Null" />
+		<ENTRY value="0" text="Null" />
 		<ENTRY value="1" text="eins" />
 		<ENTRY value="2" text="zwei" />
 		<ENTRY value="3" text="drei" />
@@ -16,36 +16,39 @@
 
 	<GUI>
 
-		<VBOX  >
+		<VBOX>
 			<LABEL text="Test" />
-			
-			<TEXTFIELD name="tabelle.value"   />
-			<LIST name="tabelle" />
+
+			<TEXTFIELD name="tabelle.value" />
+
 			<COMBO name="tabelle" />
 
 			<RADIO name="tabelle" />
-			<SHOWTABLE name="tabelle">
-				<COLUMN name="value" header="Wert" />
-				<COLUMN name="text" header="Text" />
-			</SHOWTABLE>
+			<HBOX>
+				<SHOWTABLE name="tabelle">
+					<COLUMN name="value" header="Wert" />
+					<COLUMN name="text" header="Text" />
+				</SHOWTABLE>
+				<LIST name="tabelle" />
+			</HBOX>
 			<HBOX />
-			
-			<TABS name="tabelle.value" >
-			    <TAB name="Null" background="red">
-			        
-			    </TAB>
-			    <TAB name="Eins" background="green">
-			        
-			    </TAB>
-			     <TAB name="Zwei" background="blue">
-			        
-			    </TAB>
-			     <TAB name="Drei" background="yellow">
-			        
-			    </TAB>
-			     <TAB name="Vier" background="margenta">
-			        
-			    </TAB>
+
+			<TABS name="tabelle.value">
+				<TAB name="Null" background="red">
+
+				</TAB>
+				<TAB name="Eins" background="green">
+
+				</TAB>
+				<TAB name="Zwei" background="blue">
+
+				</TAB>
+				<TAB name="Drei" background="yellow">
+
+				</TAB>
+				<TAB name="Vier" background="margenta">
+
+				</TAB>
 			</TABS>
 		</VBOX>
 
