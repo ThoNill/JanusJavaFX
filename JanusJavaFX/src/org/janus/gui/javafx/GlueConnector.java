@@ -17,31 +17,31 @@ import org.janus.gui.enums.GuiType;
  */
 public class GlueConnector extends JavaFXBasisConnector {
 
-	/**
-	 * Constructor declaration
-	 * 
-	 * 
-	 * @param node
-	 * @param name
-	 * @param model
-	 * 
-	 * @see
-	 */
-	public GlueConnector(Region spacer) {
-		super(GuiType.GLUE, spacer);
-		//((JComponent)glue).setAlignmentX(Component.LEFT_ALIGNMENT);
-		
-	}
+    /**
+     * Constructor declaration
+     * 
+     * 
+     * @param node
+     * @param name
+     * @param model
+     * 
+     * @see
+     */
+    public GlueConnector(Region spacer) {
+        super(GuiType.GLUE, spacer);
+        // ((JComponent)glue).setAlignmentX(Component.LEFT_ALIGNMENT);
 
-	@Override
-	protected void setGuiValueWithText(String text) {
-		
-	}
+    }
 
-	@Override
-	public Serializable getGuiValue() {
-		return "";
-	}
+    @Override
+    protected void setGuiValueWithText(String text) {
+
+    }
+
+    @Override
+    public Serializable getGuiValue() {
+        return "";
+    }
 
 }
 

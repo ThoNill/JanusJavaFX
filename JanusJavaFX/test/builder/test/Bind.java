@@ -2,6 +2,7 @@ package builder.test;
 
 import static org.junit.Assert.*;
 
+import org.apache.log4j.Logger;
 import org.janus.actions.EmptyAction;
 import org.janus.binder.BindAdvice;
 import org.janus.binder.BindAdviceList;
@@ -15,12 +16,16 @@ import org.jdom2.Element;
 import org.junit.Assert;
 import org.junit.Test;
 
+import allgemein.SessionInterface;
 import toni.druck.xml.XMLDocumentLoader;
 
 public class Bind {
+    private static final Logger LOG = Logger.getLogger(Bind.class);
+
 
 	@Test
 	public void bindAdvice1() {
+	   
 		ActionDictionary dict = new ActionDictionary("test");
 		dict.addAction("name", new EmptyAction());
 		ActionEventSender sender = dict.addAction("action1", new EmptyAction());
@@ -30,7 +35,7 @@ public class Bind {
 			a.bind(dict);
 			fail("Exception erwartet");
 		} catch (RuntimeException ex) {
-
+		    LOG.error("provozierte Ausnahme",ex);
 		}
 	}
 
@@ -139,7 +144,7 @@ public class Bind {
 			assertEquals(2,s3.getListenersCount());	
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error("Fehler",e);;
 			
 			Assert.fail("Exception " + e.getMessage());
 		}

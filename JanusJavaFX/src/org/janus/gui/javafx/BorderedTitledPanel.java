@@ -6,23 +6,23 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 public class BorderedTitledPanel extends StackPane {
-	private String title;
+    private String title;
 
-	public BorderedTitledPanel(String titleString, Node content) {
-		Label title = new Label(" " + titleString + " ");
-	    title.getStyleClass().add("bordered-titled-title");
-	    StackPane.setAlignment(title, Pos.TOP_CENTER);
+    public BorderedTitledPanel(String titleString, Node content) {
+        Label title = new Label(" " + titleString + " ");
+        title.getStyleClass().add("bordered-titled-title");
+        StackPane.setAlignment(title, Pos.TOP_CENTER);
 
-	    StackPane contentPane = new StackPane();
-	    content.getStyleClass().add("bordered-titled-content");
-	    contentPane.getChildren().add(content);
+        StackPane contentPane = new StackPane();
+        content.getStyleClass().add("bordered-titled-content");
+        contentPane.getChildren().add(content);
 
-	    getStyleClass().add("bordered-titled-border");
-	    getChildren().addAll(title, contentPane);
-	    this.title = titleString;
-	}
+        getStyleClass().add("bordered-titled-border");
+        getChildren().addAll(title, contentPane);
+        this.title = titleString;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 }

@@ -21,46 +21,44 @@ import com.sun.javafx.tk.FontMetrics;
  * @version %I%, %G%
  */
 public class CheckBoxConnector extends JavaFXBasisConnector implements
-ChangeListener<Boolean> {
+        ChangeListener<Boolean> {
 
-	public CheckBoxConnector(CheckBox box) {
-		super(GuiType.CHECK, box);
-		box.selectedProperty().addListener(this);
-	}
+    public CheckBoxConnector(CheckBox box) {
+        super(GuiType.CHECK, box);
+        box.selectedProperty().addListener(this);
+    }
 
-	@Override
-	public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldValue,
-			Boolean newValue) {
-		setModelValue("" + newValue);
-	}
+    @Override
+    public void changed(ObservableValue<? extends Boolean> arg0,
+            Boolean oldValue, Boolean newValue) {
+        setModelValue("" + newValue);
+    }
 
-	@Override
-	protected void setGuiValueWithText(String text) {
-		boolean b = Boolean.parseBoolean(text);
-		if (getCheckBox() != null) {
-			getCheckBox().setSelected(b);
-		}
-	}
+    @Override
+    protected void setGuiValueWithText(String text) {
+        boolean b = Boolean.parseBoolean(text);
+        if (getCheckBox() != null) {
+            getCheckBox().setSelected(b);
+        }
+    }
 
-	@Override
-	protected Dimension getDefaultDimension() {
-		FontMetrics fm = getFontMetrics();
-	
-		int w = (int) fm.computeStringWidth("XXXXXXXXX");
-		int h = (int) (fm.getLineHeight() * 1.2f);
-		return new Dimension(w, h);
-	}
+    @Override
+    protected Dimension getDefaultDimension() {
+        FontMetrics fm = getFontMetrics();
 
+        int w = (int) fm.computeStringWidth("XXXXXXXXX");
+        int h = (int) (fm.getLineHeight() * 1.2f);
+        return new Dimension(w, h);
+    }
 
-	CheckBox getCheckBox() {
-		return (CheckBox)getComponent();
-	}
+    CheckBox getCheckBox() {
+        return (CheckBox) getComponent();
+    }
 
-	@Override
-	public Serializable getGuiValue() {
-		return getCheckBox().isSelected();
-	}
-
+    @Override
+    public Serializable getGuiValue() {
+        return getCheckBox().isSelected();
+    }
 
 }
 

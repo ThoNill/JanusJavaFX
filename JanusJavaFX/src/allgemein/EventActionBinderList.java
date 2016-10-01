@@ -1,38 +1,37 @@
 package allgemein;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.Node;
-
-import javax.swing.JComponent;
 
 import org.janus.data.DataContext;
 
 public class EventActionBinderList {
-	Vector<EventActionBinder> list = new Vector<>();
+    List<EventActionBinder> list = new ArrayList<>();
 
-	public EventActionBinderList() {
-		
-	}
+    public EventActionBinderList() {
 
-	public void addElement(EventActionBinder obj) {
-		list.addElement(obj);
-	}
+    }
 
-	public void register(Node component) {
-		for( EventActionBinder b : list) {
-			b.register(component);
-		}
-	}
-	
-	public void setContext(DataContext context) {
-		for( EventActionBinder b : list) {
-			b.setContext(context);
-		}
-	}
+    public void addElement(EventActionBinder obj) {
+        list.add(obj);
+    }
 
-	public int size() {
-		return list.size();
-	}
-	
+    public void register(Node component) {
+        for (EventActionBinder b : list) {
+            b.register(component);
+        }
+    }
+
+    public void setContext(DataContext context) {
+        for (EventActionBinder b : list) {
+            b.setContext(context);
+        }
+    }
+
+    public int size() {
+        return list.size();
+    }
+
 }

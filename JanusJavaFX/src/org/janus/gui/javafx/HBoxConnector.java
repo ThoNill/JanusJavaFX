@@ -18,35 +18,35 @@ import org.janus.gui.enums.GuiType;
  */
 public class HBoxConnector extends JavaFXBasisConnector {
 
-	/**
-	 * Constructor declaration
-	 * 
-	 * 
-	 * @param node
-	 * @param name
-	 * @param model
-	 * 
-	 * @see
-	 */
-	public HBoxConnector(HBox panel) {
-		super(GuiType.HBOX, panel);
-		panel.setAlignment(Pos.CENTER_LEFT);
-		
-	}
+    /**
+     * Constructor declaration
+     * 
+     * 
+     * @param node
+     * @param name
+     * @param model
+     * 
+     * @see
+     */
+    public HBoxConnector(HBox panel) {
+        super(GuiType.HBOX, panel);
+        panel.setAlignment(Pos.CENTER_LEFT);
 
-	public HBox getBox() {
-		return (HBox) getComponent();
-	}
+    }
 
-	@Override
-	protected void setGuiValueWithText(String text) {
-		
-	}
+    public HBox getBox() {
+        return (HBox) getComponent();
+    }
 
-	@Override
-	public Serializable getGuiValue() {
-		return "";
-	}
+    @Override
+    protected void setGuiValueWithText(String text) {
+
+    }
+
+    @Override
+    public Serializable getGuiValue() {
+        return "";
+    }
 
 }
 

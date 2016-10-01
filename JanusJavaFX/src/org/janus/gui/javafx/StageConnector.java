@@ -1,8 +1,6 @@
 package org.janus.gui.javafx;
 
 import java.awt.Component;
-
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,95 +18,98 @@ import org.janus.gui.basis.RootGuiComponent;
 import org.janus.gui.enums.GuiType;
 
 public class StageConnector extends JavaFXBasisConnector implements
-		RootGuiComponent {
-	Stage frame;
-	Scene scene;
-	Pane pane;
-	
-	private List<GuiComponent> components = null;
+        RootGuiComponent {
+    Stage frame;
+    Scene scene;
+    Pane pane;
 
-	public StageConnector(Stage frame) {
-		super(GuiType.FRAME, frame);
-		this.frame = frame;
-		pane = new VBox();
-		scene = new Scene(pane);
-		frame.setScene(scene);
-	}
+    private List<GuiComponent> components = null;
 
-	public Scene getScene() {
-		return scene;
-	}
+    public StageConnector(Stage frame) {
+        super(GuiType.FRAME, frame);
+        this.frame = frame;
+        pane = new VBox();
+        scene = new Scene(pane);
+        frame.setScene(scene);
+    }
 
-	@Override
-	protected void setGuiValueWithText(String text) {
-		if (text != null) {
-			frame.setTitle(text);
+    public Scene getScene() {
+        return scene;
+    }
 
-		}
-	}
+    @Override
+    protected void setGuiValueWithText(String text) {
+        if (text != null) {
+            frame.setTitle(text);
 
-	@Override
-	public Object getComponent() {
-		return frame;
-	}
+        }
+    }
 
-	@Override
-	protected Component getUpdateComponent() {
-//		return frame.getContentPane();
-		return null;
-	}
+    @Override
+    public Object getComponent() {
+        return frame;
+    }
 
-	@Override
-	public Serializable getGuiValue() {
-		return frame.getTitle();
-	}
+    @Override
+    protected Component getUpdateComponent() {
+        // return frame.getContentPane();
+        return null;
+    }
 
-	@Override
-	public void addComponent(GuiComponent comp) {
-		if (comp instanceof MenuBarConnector) {
-			setMenuBarConnector((MenuBarConnector) comp);
-			return;
-		}
-		if (comp instanceof ContextMenuConnector) {
-			ContextMenu contextMenu =	((ContextMenuConnector) comp).getMenu();
-			
-			 pane.addEventHandler(ContextMenuEvent.CONTEXT_MENU_REQUESTED, event -> {
-			        contextMenu.show(pane, event.getScreenX(), event.getScreenY());
-			        event.consume();
-			    });
-			    pane.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
-				contextMenu.hide();
-			});
-			return;
-		}
-		if (comp instanceof JavaFXBasisConnector) {
-			JavaFXBasisConnector childConnector = (JavaFXBasisConnector) comp;
-			pane.getChildren().add(childConnector.getNode());
-		}
-	}
+    @Override
+    public Serializable getGuiValue() {
+        return frame.getTitle();
+    }
 
-	private void setMenuBarConnector(MenuBarConnector barConnector) {
-		pane.getChildren().add(0,barConnector.getBar());
-	}
+    @Override
+    public void addComponent(GuiComponent comp) {
+        if (comp instanceof MenuBarConnector) {
+            setMenuBarConnector((MenuBarConnector) comp);
+            return;
+        }
+        if (comp instanceof ContextMenuConnector) {
+            ContextMenu contextMenu = ((ContextMenuConnector) comp).getMenu();
 
-	@Override
-	public List<GuiComponent> getAllComponents() {
-		return components;
-	}
+            pane.addEventHandler(
+                    ContextMenuEvent.CONTEXT_MENU_REQUESTED,
+                    event -> {
+                        contextMenu.show(pane, event.getScreenX(),
+                                event.getScreenY());
+                        event.consume();
+                    });
+            pane.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
+                contextMenu.hide();
+            });
+            return;
+        }
+        if (comp instanceof JavaFXBasisConnector) {
+            JavaFXBasisConnector childConnector = (JavaFXBasisConnector) comp;
+            pane.getChildren().add(childConnector.getNode());
+        }
+    }
 
-	@Override
-	public void setAllComponents(List<GuiComponent> components) {
-		this.components = components;
-	}
+    private void setMenuBarConnector(MenuBarConnector barConnector) {
+        pane.getChildren().add(0, barConnector.getBar());
+    }
 
-	@Override
-	public void setContext(DataContext context) {
-		super.setContext(context);
-		for (GuiComponent c : components) {
-			if (c != this) {
-				((JavaFXBasisConnector) c).setContext(context);
-			}
-		}
-	}
+    @Override
+    public List<GuiComponent> getAllComponents() {
+        return components;
+    }
+
+    @Override
+    public void setAllComponents(List<GuiComponent> components) {
+        this.components = components;
+    }
+
+    @Override
+    public void setContext(DataContext context) {
+        super.setContext(context);
+        for (GuiComponent c : components) {
+            if (c != this) {
+                ((JavaFXBasisConnector) c).setContext(context);
+            }
+        }
+    }
 
 }

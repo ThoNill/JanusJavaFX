@@ -4,11 +4,6 @@ package org.janus.gui.javafx;
 
 import java.io.Serializable;
 
-
-
-
-
-
 import javafx.scene.control.Label;
 
 import org.janus.gui.enums.GuiType;
@@ -22,36 +17,36 @@ import org.janus.gui.enums.GuiType;
  */
 public class LabelConnector extends JavaFXBasisConnector {
 
-	/**
-	 * Constructor declaration
-	 * 
-	 * 
-	 * @param node
-	 * @param name
-	 * @param model
-	 * 
-	 * @see
-	 */
-	public LabelConnector(Label label) {
-		super(GuiType.LABEL, label);
-	//	label.setAlignmentX(Component.LEFT_ALIGNMENT);
-	}
+    /**
+     * Constructor declaration
+     * 
+     * 
+     * @param node
+     * @param name
+     * @param model
+     * 
+     * @see
+     */
+    public LabelConnector(Label label) {
+        super(GuiType.LABEL, label);
+        // label.setAlignmentX(Component.LEFT_ALIGNMENT);
+    }
 
-	public Label getJavaFXLabel() {
-		return (Label) getComponent();
-	}
+    public Label getJavaFXLabel() {
+        return (Label) getComponent();
+    }
 
-	@Override
-	protected void setGuiValueWithText(String text) {
-		if (text != null) {
-			getJavaFXLabel().setText(text);
-		}
-	}
+    @Override
+    protected void setGuiValueWithText(String text) {
+        if (text != null) {
+            getJavaFXLabel().setText(text);
+        }
+    }
 
-	@Override
-	public Serializable getGuiValue() {
-		return getJavaFXLabel().getText();
-	}
+    @Override
+    public Serializable getGuiValue() {
+        return getJavaFXLabel().getText();
+    }
 
 }
 

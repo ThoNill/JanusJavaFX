@@ -18,34 +18,34 @@ import org.janus.gui.enums.GuiType;
  */
 public class VBoxConnector extends JavaFXBasisConnector {
 
-	/**
-	 * Constructor declaration
-	 * 
-	 * 
-	 * @param node
-	 * @param name
-	 * @param model
-	 * 
-	 * @see
-	 */
-	public VBoxConnector(VBox panel) {
-		super(GuiType.VBOX, panel);
-		panel.setAlignment(Pos.BOTTOM_LEFT);
-	}
+    /**
+     * Constructor declaration
+     * 
+     * 
+     * @param node
+     * @param name
+     * @param model
+     * 
+     * @see
+     */
+    public VBoxConnector(VBox panel) {
+        super(GuiType.VBOX, panel);
+        panel.setAlignment(Pos.BOTTOM_LEFT);
+    }
 
-	public VBox getBox() {
-		return (VBox) getComponent();
-	}
+    public VBox getBox() {
+        return (VBox) getComponent();
+    }
 
-	@Override
-	protected void setGuiValueWithText(String text) {
-		
-	}
+    @Override
+    protected void setGuiValueWithText(String text) {
 
-	@Override
-	public Serializable getGuiValue() {
-		return "";
-	}
+    }
+
+    @Override
+    public Serializable getGuiValue() {
+        return "";
+    }
 
 }
 

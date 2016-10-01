@@ -2,6 +2,8 @@ package builder.test;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import org.apache.log4j.Logger;
 import org.janus.appbuilder.AppBuilder;
 import org.janus.gui.basis.JanusApplication;
 import org.janus.gui.basis.JanusPage;
@@ -13,6 +15,7 @@ import org.janus.gui.javafx.builder.JavaFXGuiElementBuilder;
 import org.junit.Assert;
 
 public class TestJavaFXApp extends Application {
+    private static final Logger LOG = Logger.getLogger(TestJavaFXApp.class);
 	
     public static void main(String[] args) {
         launch(args);
@@ -47,7 +50,7 @@ public class TestJavaFXApp extends Application {
 			
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error("Fehler",e);;
 			Assert.fail("Exception " + e.getMessage());
 		}
 	}	

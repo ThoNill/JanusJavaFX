@@ -3,6 +3,7 @@
 package org.janus.gui.javafx;
 
 import javafx.collections.ObservableListBase;
+
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
@@ -18,52 +19,52 @@ import org.janus.table.ExtendedTableModel;
  */
 
 public class TableModelList extends ObservableListBase<String> implements
-		TableModelListener {
+        TableModelListener {
 
-	ExtendedTableModel model = null;
+    ExtendedTableModel model = null;
 
-	static Logger logger = Logger.getLogger("SwingComboBoxModel");
+    static Logger logger = Logger.getLogger("SwingComboBoxModel");
 
-	/**
-	 * Constructor declaration
-	 * 
-	 * 
-	 * @param model
-	 * 
-	 * @see
-	 */
-	public TableModelList(ExtendedTableModel model) {
-		this.model = model;
-		model.addTableModelListener(this);
+    /**
+     * Constructor declaration
+     * 
+     * 
+     * @param model
+     * 
+     * @see
+     */
+    public TableModelList(ExtendedTableModel model) {
+        this.model = model;
+        model.addTableModelListener(this);
 
-	}
+    }
 
-	@Override
-	public void tableChanged(TableModelEvent e) {
+    @Override
+    public void tableChanged(TableModelEvent e) {
 
-		beginChange();
-		endChange();
+        beginChange();
+        endChange();
 
-	}
+    }
 
-	@Override
-	public String get(int index) {
-		if (model.getColumnCount() < 2) {
-			return convert(index,0);
-		}
+    @Override
+    public String get(int index) {
+        if (model.getColumnCount() < 2) {
+            return convert(index, 0);
+        }
 
-		return convert(index, 1);
-	}
+        return convert(index, 1);
+    }
 
-	protected String convert(int index,int column) {
-		Object obj = model.getValueAt(index, column);
-		return (obj==null) ? "" : obj.toString();
-	}
+    protected String convert(int index, int column) {
+        Object obj = model.getValueAt(index, column);
+        return (obj == null) ? "" : obj.toString();
+    }
 
-	@Override
-	public int size() {
-		return model.getRowCount();
-	}
+    @Override
+    public int size() {
+        return model.getRowCount();
+    }
 
 }
 

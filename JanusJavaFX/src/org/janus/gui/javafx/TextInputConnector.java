@@ -18,135 +18,139 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 
+import org.apache.log4j.Logger;
 import org.janus.gui.enums.GuiType;
 import org.janus.gui.enums.KeyEventType;
 
 public class TextInputConnector extends JavaFXBasisConnector implements
-		ChangeListener<Boolean>, EventHandler<ActionEvent> {
-	private Background lastColor;
-	private String lastValue;
-	private boolean alreadyHasFocus = false;
+        ChangeListener<Boolean>, EventHandler<ActionEvent> {
+    private static final Logger LOG = Logger
+            .getLogger(TextInputConnector.class);
 
-	public TextInputConnector(TextField textField) {
-		super(GuiType.TEXTFIELD, textField);
-		textField.setOnAction(this);
-		textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent key) {
-				if (KeyEventType.CTRL_D.name().equals(key)) {
-					resetToOldValue();
-				}
-				if (KeyEventType.COPY.name().equals(key)) {
-					setTextToClipboard(getTextfield().getText());
-				}
-				if (KeyEventType.PAST.name().equals(key)) {
-					getTextfield().setText(getTextFromClipboard());
-				}
+    private Background lastColor;
+    private String lastValue;
+    private boolean alreadyHasFocus = false;
 
-			}
-		});
-		textField.focusedProperty().addListener(this);
-		setGuiValueWithText("");
-	}
+    public TextInputConnector(TextField textField) {
+        super(GuiType.TEXTFIELD, textField);
+        textField.setOnAction(this);
+        textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent key) {
+                if (KeyEventType.CTRL_D.name().equals(key)) {
+                    resetToOldValue();
+                }
+                if (KeyEventType.COPY.name().equals(key)) {
+                    setTextToClipboard(getTextfield().getText());
+                }
+                if (KeyEventType.PAST.name().equals(key)) {
+                    getTextfield().setText(getTextFromClipboard());
+                }
 
-	public TextInputControl getTextfield() {
-		return (TextInputControl) getComponent();
-	}
+            }
+        });
+        textField.focusedProperty().addListener(this);
+        setGuiValueWithText("");
+    }
 
-	@Override
-	public void handle(ActionEvent arg0) {
-		setModelValue();
-	}
+    public TextInputControl getTextfield() {
+        return (TextInputControl) getComponent();
+    }
 
-	protected void setModelValue() {
-		setModelValue(getTextfield().getText());
-	}
+    @Override
+    public void handle(ActionEvent arg0) {
+        setModelValue();
+    }
 
-	@Override
-	protected void setGuiValueWithText(String text) {
-		if (text != null && getTextfield() != null) {
-			getTextfield().setText(text);
-		}
-	}
+    protected void setModelValue() {
+        setModelValue(getTextfield().getText());
+    }
 
-	@Override
-	protected void updateValue() {
-		if (value != null && context != null) {
-			Serializable s = getModelValue();
-			setGuiValue(s);
-		}
-	}
+    @Override
+    protected void setGuiValueWithText(String text) {
+        if (text != null && getTextfield() != null) {
+            getTextfield().setText(text);
+        }
+    }
 
-	@Override
-	public void changed(ObservableValue<? extends Boolean> oldValue,
-			Boolean newValue, Boolean arg2) {
-		if (hasFocus()) {
-			focusGained();
-		} else {
-			focusLost();
-		}
+    @Override
+    protected void updateValue() {
+        if (value != null && context != null) {
+            Serializable s = getModelValue();
+            setGuiValue(s);
+        }
+    }
 
-	}
+    @Override
+    public void changed(ObservableValue<? extends Boolean> oldValue,
+            Boolean newValue, Boolean arg2) {
+        if (hasFocus()) {
+            focusGained();
+        } else {
+            focusLost();
+        }
 
-	public void focusGained() {
-		if (!alreadyHasFocus) {
-			alreadyHasFocus = true;
-			lastColor = getTextfield().getBackground();
-			setBackgroundColor(Color.yellow);
-		}
-	}
+    }
 
-	public void focusLost() {
-		if (alreadyHasFocus) {
-			alreadyHasFocus=false;
-			getTextfield().setBackground(lastColor);
-			safeOldValue();
-			setModelValue();
-		}
-	}
+    public void focusGained() {
+        if (!alreadyHasFocus) {
+            alreadyHasFocus = true;
+            lastColor = getTextfield().getBackground();
+            setBackgroundColor(Color.yellow);
+        }
+    }
 
-	public void safeOldValue() {
-		lastValue = getTextfield().getText();
-	}
+    public void focusLost() {
+        if (alreadyHasFocus) {
+            alreadyHasFocus = false;
+            getTextfield().setBackground(lastColor);
+            safeOldValue();
+            setModelValue();
+        }
+    }
 
-	public void resetToOldValue() {
-		getTextfield().setText(lastValue);
-	}
+    public void safeOldValue() {
+        lastValue = getTextfield().getText();
+    }
 
-	public static void setTextToClipboard(String text) {
-		Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-		StringSelection contents = new StringSelection(text);
-		cb.setContents(contents, null);
-	}
+    public void resetToOldValue() {
+        getTextfield().setText(lastValue);
+    }
 
-	public static String getTextFromClipboard() {
-		String s = "";
+    public static void setTextToClipboard(String text) {
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection contents = new StringSelection(text);
+        cb.setContents(contents, null);
+    }
 
-		try {
-			Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-			Transferable content = cb.getContents(null);
-			s = (String) content.getTransferData(DataFlavor.stringFlavor);
-		} catch (Exception ex) {
-			// DebugAssistent.log(ex);
-		}
-		return s;
-	}
+    public static String getTextFromClipboard() {
+        String s = "";
 
-	@Override
-	protected Dimension getDefaultDimension() {
-		com.sun.javafx.tk.FontMetrics fm = getFontMetrics();
-		float a = getWidth();
-		if (a <= 0) {
-			a = 5.0f;
-		}
-		int w = (int) (fm.computeStringWidth("X") * a);
-		int h = (int) (fm.getLineHeight() * 1.2f);
-		return new Dimension(w, h);
-	}
+        try {
+            Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+            Transferable content = cb.getContents(null);
+            s = (String) content.getTransferData(DataFlavor.stringFlavor);
+        } catch (Exception ex) {
+            LOG.error("clipboard geht nicht", ex);
+        }
+        return s;
+    }
 
-	@Override
-	public Serializable getGuiValue() {
-		return getTextfield().getText();
-	}
+    @Override
+    protected Dimension getDefaultDimension() {
+        com.sun.javafx.tk.FontMetrics fm = getFontMetrics();
+        float a = getWidth();
+        if (a <= 0) {
+            a = 5.0f;
+        }
+        int w = (int) (fm.computeStringWidth("X") * a);
+        int h = (int) (fm.getLineHeight() * 1.2f);
+        return new Dimension(w, h);
+    }
+
+    @Override
+    public Serializable getGuiValue() {
+        return getTextfield().getText();
+    }
 
 }

@@ -9,6 +9,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 
+import org.apache.log4j.Logger;
 import org.janus.gui.enums.GuiType;
 import org.janus.table.ExtendedTableModel;
 
@@ -19,61 +20,62 @@ import org.janus.table.ExtendedTableModel;
  * @author
  * @version %I%, %G%
  */
-public class ComboBoxConnector extends JavaFXTableModelConnector implements ChangeListener {
-	/**
-	 * Constructor declaration
-	 * 
-	 * 
-	 * @param node
-	 * @param name
-	 * @param model
-	 * 
-	 * @see
-	 */
-	public ComboBoxConnector(ComboBox<String> list) {
-		super(GuiType.LIST, list);
-		list.getSelectionModel().selectedItemProperty().addListener(this);
-		// initSelectionModel();
-	}
+public class ComboBoxConnector extends JavaFXTableModelConnector implements
+        ChangeListener {
+    private static final Logger LOG = Logger.getLogger(ComboBoxConnector.class);
 
-	public ComboBox<String> getList() {
-		return (ComboBox<String>) getComponent();
-	}
-	
-	@Override
-	public void SelectionChanged(int pos) {
-		getList().getSelectionModel().select(getTableModel().getCurrentRow());
-	}
+    /**
+     * Constructor declaration
+     * 
+     * 
+     * @param node
+     * @param name
+     * @param model
+     * 
+     * @see
+     */
+    public ComboBoxConnector(ComboBox<String> list) {
+        super(GuiType.LIST, list);
+        list.getSelectionModel().selectedItemProperty().addListener(this);
+        // initSelectionModel();
+    }
 
-	@Override
-	public void changed(ObservableValue arg0, Object arg1, Object arg2) {
-		setCurrentRowInTheModel(getSelectedIndex());
-	}
+    public ComboBox<String> getList() {
+        return (ComboBox<String>) getComponent();
+    }
 
+    @Override
+    public void SelectionChanged(int pos) {
+        getList().getSelectionModel().select(getTableModel().getCurrentRow());
+    }
 
-	@Override
-	public void setModel(ExtendedTableModel tm) {
-		try {
-			ObservableList<String> m = new TableModelList(getTableModel());
-			if (getList() != null) {
-				getList().setItems(m);
-				//getList().setSelectedIndex(tm.getCurrentRow());
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
+    @Override
+    public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+        setCurrentRowInTheModel(getSelectedIndex());
+    }
 
-	@Override
-	public Serializable getGuiValue() {
-		return (Serializable) getTableModel().getValueAt(getSelectedIndex(),0);
-	}
+    @Override
+    public void setModel(ExtendedTableModel tm) {
+        try {
+            ObservableList<String> m = new TableModelList(getTableModel());
+            if (getList() != null) {
+                getList().setItems(m);
+                // getList().setSelectedIndex(tm.getCurrentRow());
+            }
+        } catch (Exception ex) {
+            LOG.error("Fehler", ex);
+            ;
+        }
+    }
 
-	protected int getSelectedIndex() {
-		return getList().getSelectionModel().getSelectedIndex();
-	}
+    @Override
+    public Serializable getGuiValue() {
+        return (Serializable) getTableModel().getValueAt(getSelectedIndex(), 0);
+    }
 
-
+    protected int getSelectedIndex() {
+        return getList().getSelectionModel().getSelectedIndex();
+    }
 
 }
 
