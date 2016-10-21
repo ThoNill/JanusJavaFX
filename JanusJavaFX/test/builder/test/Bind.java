@@ -1,6 +1,7 @@
 package builder.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.apache.log4j.Logger;
 import org.janus.actions.EmptyAction;
@@ -16,7 +17,6 @@ import org.jdom2.Element;
 import org.junit.Assert;
 import org.junit.Test;
 
-import allgemein.SessionInterface;
 import toni.druck.xml.XMLDocumentLoader;
 
 public class Bind {

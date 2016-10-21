@@ -19,8 +19,8 @@ import org.janus.gui.javafx.StageConnector;
 import org.janus.gui.javafx.builder.JavaFXGuiElementBuilder;
 import org.jdom2.Document;
 
-import allgemein.SessionInterface;
 import toni.druck.xml.XMLDocumentLoader;
+import allgemein.SessionInterface;
 
 public class TestSinglePage extends Application {
 	private String pagename;

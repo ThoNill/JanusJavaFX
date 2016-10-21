@@ -12,7 +12,6 @@ import org.jdom2.Document;
 import org.junit.Assert;
 import org.junit.Test;
 
-import allgemein.ActionWithContext;
 import toni.druck.xml.XMLDocumentLoader;
 
 public class Load {

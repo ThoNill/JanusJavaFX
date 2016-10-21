@@ -22,7 +22,7 @@ public class TestJavaFXApp extends Application {
     }
     
 	public TestJavaFXApp() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	  
