@@ -45,13 +45,21 @@ public class ComboBoxConnector extends JavaFXTableModelConnector implements
     }
 
     @Override
-    public void SelectionChanged(int pos) {
-        getList().getSelectionModel().select(getTableModel().getCurrentRow());
+    public void SelectionChanged(int pos, int column) {
+        int viewPos = getSelectedIndex();
+        int modelPos = getTableModel().getCurrentRow();
+        //if (viewPos != modelPos) {
+            getList().getSelectionModel().select(modelPos);
+        //}
     }
 
     @Override
     public void changed(ObservableValue arg0, Object arg1, Object arg2) {
-        setCurrentRowInTheModel(getSelectedIndex());
+        int viewPos = getSelectedIndex();
+        int modelPos = getTableModel().getCurrentRow();
+        if (viewPos != modelPos) {
+            setCurrentRowInTheModel(viewPos);
+        }
     }
 
     @Override
@@ -60,11 +68,11 @@ public class ComboBoxConnector extends JavaFXTableModelConnector implements
             ObservableList<String> m = new TableModelList(getTableModel());
             if (getList() != null) {
                 getList().setItems(m);
-                // getList().setSelectedIndex(tm.getCurrentRow());
+         //       getList().setSelectedIndex(tm.getCurrentRow());
             }
         } catch (Exception ex) {
             LOG.error("Fehler", ex);
-            ;
+
         }
     }
 

@@ -29,7 +29,11 @@ public class TabbedPaneConnector extends JavaFXBasisConnector implements
         if (context != null) {
             SingleSelectionModel<Tab> selection = getTabbedPane()
                     .getSelectionModel();
-            value.setObject(context, "" + selection.getSelectedIndex());
+            String viewPos = "" + selection.getSelectedIndex();
+            String modelPos = value.getObject(context).toString();
+            if (!viewPos.equals(modelPos)) {
+                value.setObject(context, viewPos);
+            }
         }
     }
 
@@ -37,9 +41,10 @@ public class TabbedPaneConnector extends JavaFXBasisConnector implements
     protected void setGuiValueWithText(String text) {
         SingleSelectionModel<Tab> selection = getTabbedPane()
                 .getSelectionModel();
-        int i = Integer.parseInt(text);
-        if (selection != null && i >= 0 && i < getTabbedPane().getTabs().size()) {
-            selection.select(i);
+        int pos = Integer.parseInt(text);
+        int viewPos = getTabbedPane().getSelectionModel().getSelectedIndex();
+        if (selection != null && pos >= 0 && pos < getTabbedPane().getTabs().size() ) {
+            selection.select(pos);
         }
 
     }

@@ -47,7 +47,7 @@ public class RadioConnector extends JavaFXTableModelConnector implements
     }
 
     @Override
-    public void SelectionChanged(int pos) {
+    public void SelectionChanged(int pos,int column) {
         getRadioGroup().setSelectedIndex(pos);
     }
 

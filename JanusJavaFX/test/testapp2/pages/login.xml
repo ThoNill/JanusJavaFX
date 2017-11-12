@@ -19,11 +19,11 @@
 		<VBOX>
 			<LABEL text="Test" />
 
-			<TEXTFIELD name="tabelle.value" />
+<!-- 			<TEXTFIELD name="tabelle.value" />-->
 			<COMBO name="tabelle" />
-
+<!-- 
 			<RADIO name="tabelle" />
-			<HBOX>
+	-->		<HBOX>
 				<SHOWTABLE name="tabelle">
 					<COLUMN name="value" header="Wert" />
 					<COLUMN name="text" header="Text" />

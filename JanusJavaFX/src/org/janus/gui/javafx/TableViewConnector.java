@@ -9,10 +9,12 @@ import java.util.List;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 
 import org.janus.gui.basis.TableColumnDescription;
@@ -27,7 +29,7 @@ import org.janus.table.ExtendedTableModel;
  * @version %I%, %G%
  */
 public class TableViewConnector extends JavaFXTableModelConnector implements
-        ChangeListener {
+        ListChangeListener<TablePosition> {
 
     /**
      * Constructor declaration
@@ -42,6 +44,7 @@ public class TableViewConnector extends JavaFXTableModelConnector implements
     public TableViewConnector(TableView table,
             List<TableColumnDescription> columnDescription) {
         super(GuiType.SHOWTABLE, table);
+        table.getSelectionModel().setCellSelectionEnabled(true);
         createColumnsFromDescriptions(table, columnDescription);
         initSelectionModel();
 
@@ -71,15 +74,18 @@ public class TableViewConnector extends JavaFXTableModelConnector implements
     }
 
     private void initSelectionModel() {
-        getTableView().getSelectionModel().selectedItemProperty()
-                .addListener(this);
+        getTableView().getSelectionModel().getSelectedCells().addListener(this);
+        
     }
 
     @Override
-    public void SelectionChanged(int pos) {
+    public void SelectionChanged(int pos, int column) {
         int oldPos = getTableView().getSelectionModel().getSelectedIndex();
         if (oldPos != pos) {
             getTableView().getSelectionModel().select(pos);
+            TableColumn tc = (TableColumn)getTableView().getColumns().get(column);
+            getTableView().getSelectionModel().select(pos, tc);
+            // TODO Auswahl der Ccolum
         }
 
     }
@@ -89,10 +95,17 @@ public class TableViewConnector extends JavaFXTableModelConnector implements
         return getTableModel();
     }
 
-    @Override
-    public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+
+    protected void onViewChange() {
         int row = getTableView().getSelectionModel().getSelectedIndex();
         setCurrentRowInTheModel(row);
+        ObservableList<TablePosition> cells = getTableView()
+                .getSelectionModel().getSelectedCells();
+        if (cells != null && !cells.isEmpty()) {
+            setCurrentColumnInTheModel(cells.get(0).getColumn());
+        } else {
+            setCurrentColumnInTheModel(0);
+        }
     }
 
     @Override
@@ -112,8 +125,30 @@ public class TableViewConnector extends JavaFXTableModelConnector implements
     }
 
     @Override
+    public void setGuiValue(Serializable tm) {
+        super.setGuiValue(tm);
+        if (tm instanceof ExtendedTableModel) {
+            updateModel((ExtendedTableModel) tm);
+        }
+    }
+
+    public void updateModel(ExtendedTableModel tm) {
+        if (tm != null) {
+            TableView tableView = getTableView();
+            ((TableColumn) tableView.getColumns().get(0)).setVisible(false);
+            ((TableColumn) tableView.getColumns().get(0)).setVisible(true);
+        }
+    }
+
+    @Override
     public Control decorate() {
         return new ScrollPane(getControl());
+    }
+
+    @Override
+    public void onChanged(
+            javafx.collections.ListChangeListener.Change<? extends TablePosition> arg0) {
+          onViewChange();      
     }
 
 }

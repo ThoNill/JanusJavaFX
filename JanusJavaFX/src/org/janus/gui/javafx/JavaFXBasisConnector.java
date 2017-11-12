@@ -394,12 +394,17 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
     }
 
     public void setModelValue(Serializable v) {
-        value.setObject(context, v);
-        performAllActions();
+        if (value != null) {
+            value.setObject(context, v);
+            performAllActions();
+        }
     }
 
     public Serializable getModelValue() {
-        return value.getObject(context);
+        if (value != null) {
+            return value.getObject(context);
+        }
+        return null;
     }
 
     @Override

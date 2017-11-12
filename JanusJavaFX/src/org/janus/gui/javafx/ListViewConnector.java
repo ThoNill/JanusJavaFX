@@ -45,13 +45,22 @@ public class ListViewConnector extends JavaFXTableModelConnector implements
     }
 
     @Override
-    public void SelectionChanged(int pos) {
-        getList().getSelectionModel().select(getTableModel().getCurrentRow());
+    public void SelectionChanged(int pos,int column) {
+        int modelRow = getTableModel().getCurrentRow();
+        int viewRow = getSelectedIndex();
+//        if (viewRow != modelRow) {
+            getList().getSelectionModel().select(modelRow);
+  //      }
     }
 
     @Override
     public void changed(ObservableValue arg0, Object arg1, Object arg2) {
-        setCurrentRowInTheModel(getSelectedIndex());
+        int modelRow = getTableModel().getCurrentRow();
+        int viewRow = getSelectedIndex();
+        if (viewRow != modelRow) 
+        {
+            setCurrentRowInTheModel(viewRow);
+        }
     }
 
     @Override
@@ -65,7 +74,6 @@ public class ListViewConnector extends JavaFXTableModelConnector implements
             }
         } catch (Exception ex) {
             LOG.error("Fehler", ex);
-            ;
         }
     }
 

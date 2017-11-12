@@ -20,7 +20,7 @@ public abstract class JavaFXTableModelConnector extends JavaFXBasisConnector {
         super(type, component);
     }
 
-    public abstract void SelectionChanged(int pos);
+    public abstract void SelectionChanged(int pos, int column);
 
     @Override
     public void setValue(NamedActionValue value) {
@@ -28,6 +28,8 @@ public abstract class JavaFXTableModelConnector extends JavaFXBasisConnector {
         if (value.getAction() instanceof DefaultExtendedTableWrapper) {
             tableWrapper = (DefaultExtendedTableWrapper) value.getAction();
             tableWrapper.getCurrentRow().addActionListener(this);
+            tableWrapper.getCurrentColumn().addActionListener(this);
+            tableWrapper.getCurrentValue().addActionListener(this);
         }
     }
 
@@ -38,20 +40,42 @@ public abstract class JavaFXTableModelConnector extends JavaFXBasisConnector {
 
     void setCurrentRowInTheModel(int selectedRow) {
         try {
-            tableWrapper.setCurrentRow(context, selectedRow);
-            performAllActions();
+            int oldRow = getCurrentRowInTheModel();
+            if (oldRow != selectedRow) {
+                tableWrapper.setCurrentRow(context, selectedRow);
+                performAllActions();
+            }
         } catch (Exception ex) {
             LOG.error("Fehler", ex);
-            ;
-
         }
 
     }
 
+    private int getCurrentColumnInTheModel() {
+        return tableWrapper.getCurrentColumn(context);
+    }
+
+    void setCurrentColumnInTheModel(int selectedColumn) {
+        try {
+            if (selectedColumn < 0) {
+                selectedColumn = Math.max(0,
+                        tableWrapper.getCurrentColumn(context) - 1);
+            }
+            int oldColumn = getCurrentColumnInTheModel();
+            if (oldColumn != selectedColumn) {
+                tableWrapper.setCurrentColumn(context, selectedColumn);
+                performAllActions();
+            }
+            ;
+        } catch (Exception ex) {
+            LOG.error("Fehler", ex);
+        }
+    }
+
     @Override
     public void setGuiValue(Serializable tm) {
-
         if (tm instanceof ExtendedTableModel) {
+            tm = tableWrapper.getTable(context);
             ExtendedTableModel aktuellesModel = (ExtendedTableModel) tm;
             if (tableModel == null || !tableModel.equals(aktuellesModel)) {
                 tableModel = aktuellesModel;
@@ -62,14 +86,13 @@ public abstract class JavaFXTableModelConnector extends JavaFXBasisConnector {
             int aktuelleRow = getCurrentRowInTheModel();
             if (lastRow != aktuelleRow) {
                 lastRow = aktuelleRow;
-                SelectionChanged(aktuelleRow);
+                SelectionChanged(aktuelleRow, getCurrentColumnInTheModel());
             }
-        }
-        if (tm instanceof Integer) {
+        } else if (tm instanceof Integer) {
             int aktuelleRow = ((Integer) tm).intValue();
             if (lastRow != aktuelleRow) {
                 lastRow = aktuelleRow;
-                SelectionChanged(aktuelleRow);
+                SelectionChanged(aktuelleRow, getCurrentColumnInTheModel());
             }
         }
     }
