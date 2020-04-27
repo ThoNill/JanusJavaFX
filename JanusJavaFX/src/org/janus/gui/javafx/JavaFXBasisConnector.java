@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javafx.application.Platform;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -25,6 +26,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import metric.FontMetrics;
 
 import org.janus.data.DataContext;
 import org.janus.dict.actions.ActionDictionary;
@@ -38,7 +40,7 @@ import org.janus.gui.enums.GuiType;
 import probe.ColorAWT2Fx;
 import allgemein.EventActionBinderList;
 
-import com.sun.javafx.tk.Toolkit;
+//import com.sun.javafx.tk.Toolkit;
 
 public abstract class JavaFXBasisConnector implements PropertyChangeListener,
         GuiComponent, ActionListener {
@@ -245,13 +247,14 @@ public abstract class JavaFXBasisConnector implements PropertyChangeListener,
     }
 
     protected Dimension calculateTextDimension(String text) {
-        com.sun.javafx.tk.FontMetrics fm = getFontMetrics();
-        return new Dimension((int) fm.computeStringWidth(text),
-                (int) fm.getLineHeight());
+        FontMetrics fm = getFontMetrics();
+        Bounds b = fm.bounds(text);
+        return new Dimension((int)b.getWidth(),
+                (int) b.getHeight());
     }
 
-    protected com.sun.javafx.tk.FontMetrics getFontMetrics() {
-        return Toolkit.getToolkit().getFontLoader().getFontMetrics(fxFont);
+    protected FontMetrics getFontMetrics() {
+        return new FontMetrics(fxFont);
     }
 
     protected Dimension getDefaultDimension() {

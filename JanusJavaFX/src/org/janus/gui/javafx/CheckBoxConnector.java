@@ -7,11 +7,12 @@ import java.io.Serializable;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Bounds;
 import javafx.scene.control.CheckBox;
+import metric.FontMetrics;
 
 import org.janus.gui.enums.GuiType;
 
-import com.sun.javafx.tk.FontMetrics;
 
 /**
  * Class declaration
@@ -46,9 +47,9 @@ public class CheckBoxConnector extends JavaFXBasisConnector implements
     protected Dimension getDefaultDimension() {
         FontMetrics fm = getFontMetrics();
 
-        int w = (int) fm.computeStringWidth("XXXXXXXXX");
-        int h = (int) (fm.getLineHeight() * 1.2f);
-        return new Dimension(w, h);
+        Bounds b = fm.bounds("XXXXXXXXX");
+        int h = (int) (b.getHeight() * 1.2d);
+        return new Dimension((int)b.getWidth(), h);
     }
 
     CheckBox getCheckBox() {

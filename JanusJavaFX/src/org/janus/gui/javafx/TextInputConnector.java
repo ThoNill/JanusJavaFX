@@ -13,10 +13,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
+import metric.FontMetrics;
 
 import org.apache.log4j.Logger;
 import org.janus.gui.enums.GuiType;
@@ -138,13 +140,14 @@ public class TextInputConnector extends JavaFXBasisConnector implements
 
     @Override
     protected Dimension getDefaultDimension() {
-        com.sun.javafx.tk.FontMetrics fm = getFontMetrics();
+        FontMetrics fm = getFontMetrics();
+        Bounds b = fm.bounds("X");
         float a = getWidth();
         if (a <= 0) {
             a = 5.0f;
         }
-        int w = (int) (fm.computeStringWidth("X") * a);
-        int h = (int) (fm.getLineHeight() * 1.2f);
+        int w = (int) (b.getWidth() * a);
+        int h = (int) (b.getHeight() * 1.2);
         return new Dimension(w, h);
     }
 
