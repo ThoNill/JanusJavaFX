@@ -5,13 +5,13 @@ package org.janus.gui.javafx;
 import java.awt.Dimension;
 import java.io.Serializable;
 
+import org.janus.gui.enums.GuiType;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Bounds;
 import javafx.scene.control.CheckBox;
 import metric.FontMetrics;
-
-import org.janus.gui.enums.GuiType;
 
 
 /**

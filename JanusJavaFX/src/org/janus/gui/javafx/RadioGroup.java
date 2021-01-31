@@ -3,6 +3,8 @@ package org.janus.gui.javafx;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.janus.table.ExtendedTableModel;
+
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,8 +14,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
-import org.janus.table.ExtendedTableModel;
 
 public class RadioGroup extends StackPane implements EventHandler<ActionEvent> {
     ToggleGroup group;

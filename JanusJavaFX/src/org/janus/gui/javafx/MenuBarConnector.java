@@ -6,11 +6,11 @@ import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuBar;
-
 import org.janus.gui.basis.GuiComponent;
 import org.janus.gui.enums.GuiType;
+
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuBar;
 
 /**
  * Class declaration

@@ -39,7 +39,6 @@ public class SessionInterface extends Thread {
                     a.actionPerformed();
                 } catch (Exception ex) {
                     LOG.error("Fehler", ex);
-                    ;
                 }
             }
         } catch (InterruptedException e) {

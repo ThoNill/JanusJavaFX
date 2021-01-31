@@ -2,14 +2,14 @@ package org.janus.gui.javafx;
 
 import java.io.Serializable;
 
+import org.janus.gui.basis.GuiComponent;
+import org.janus.gui.enums.GuiType;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-
-import org.janus.gui.basis.GuiComponent;
-import org.janus.gui.enums.GuiType;
 
 public class TabbedPaneConnector extends JavaFXBasisConnector implements
         ChangeListener<Number> {

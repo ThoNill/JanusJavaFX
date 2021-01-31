@@ -4,9 +4,9 @@ package org.janus.gui.javafx;
 
 import java.io.Serializable;
 
-import javafx.scene.control.Label;
-
 import org.janus.gui.enums.GuiType;
+
+import javafx.scene.control.Label;
 
 /**
  * Class declaration

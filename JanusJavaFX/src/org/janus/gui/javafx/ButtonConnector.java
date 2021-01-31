@@ -5,16 +5,15 @@ package org.janus.gui.javafx;
 import java.awt.Dimension;
 import java.io.Serializable;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-
 import org.janus.actions.Action;
 import org.janus.gui.enums.GuiField;
 import org.janus.gui.enums.GuiType;
 
 import allgemein.SessionInterface;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 
 /**
  * Class declaration

@@ -3,9 +3,9 @@ package allgemein;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.Node;
-
 import org.janus.data.DataContext;
+
+import javafx.scene.Node;
 
 public class EventActionBinderList {
     List<EventActionBinder> list = new ArrayList<>();

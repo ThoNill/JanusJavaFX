@@ -6,8 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import org.janus.gui.basis.TableColumnDescription;
+import org.janus.gui.enums.GuiType;
+import org.janus.table.ExtendedTableModel;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -16,10 +18,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
-
-import org.janus.gui.basis.TableColumnDescription;
-import org.janus.gui.enums.GuiType;
-import org.janus.table.ExtendedTableModel;
 
 /**
  * Class declaration

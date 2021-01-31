@@ -4,10 +4,10 @@ package org.janus.gui.javafx;
 
 import java.io.Serializable;
 
+import org.janus.gui.enums.GuiType;
+
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
-
-import org.janus.gui.enums.GuiType;
 
 /**
  * Class declaration

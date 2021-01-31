@@ -12,18 +12,20 @@
 		<ENTRY value="4" text="vier" />
 	</MAPTABLE>
 
-
+	<STRING name="a"/>
 
 	<GUI>
 
 		<VBOX>
-			<LABEL text="Test" />
+			<LABEL text="Test" font="Arial-BOLD-18"/>
 
-<!-- 			<TEXTFIELD name="tabelle.value" />-->
+			<TEXTFIELD name="tabelle.value" background="green" foreground="red"/>
+			<TEXTFIELD name="a" background="green" foreground="red"/>
+			<TEXTFIELD name="a" background="green" foreground="red"/>
 			<COMBO name="tabelle" />
-<!-- 
+
 			<RADIO name="tabelle" />
-	-->		<HBOX>
+			<HBOX>
 				<SHOWTABLE name="tabelle">
 					<COLUMN name="value" header="Wert" />
 					<COLUMN name="text" header="Text" />
@@ -33,20 +35,20 @@
 			<HBOX />
 
 			<TABS name="tabelle.value">
-				<TAB name="Null" background="red">
-
+				<TAB name="Null" background="red" >
+<LABEL text="Test" foreground="white" font="Helvetica-ITALIC-24" />
 				</TAB>
 				<TAB name="Eins" background="green">
-
+<LABEL text="Test" />
 				</TAB>
-				<TAB name="Zwei" background="blue">
-
+				<TAB name="Zwei" background="blue" >
+<LABEL text="Test" />
 				</TAB>
-				<TAB name="Drei" background="yellow">
-
+				<TAB name="Drei" background="yellow" >
+<LABEL text="Test" />
 				</TAB>
-				<TAB name="Vier" background="margenta">
-
+				<TAB name="Vier" background="magenta">
+<LABEL text="Test" />
 				</TAB>
 			</TABS>
 		</VBOX>

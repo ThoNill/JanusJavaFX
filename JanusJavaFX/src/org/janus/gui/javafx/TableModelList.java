@@ -2,13 +2,13 @@
 
 package org.janus.gui.javafx;
 
-import javafx.collections.ObservableListBase;
-
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 import org.apache.log4j.Logger;
 import org.janus.table.ExtendedTableModel;
+
+import javafx.collections.ObservableListBase;
 
 /**
  * Class declaration

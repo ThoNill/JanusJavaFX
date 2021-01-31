@@ -4,14 +4,14 @@ package org.janus.gui.javafx;
 
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+import org.janus.gui.enums.GuiType;
+import org.janus.table.ExtendedTableModel;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-
-import org.apache.log4j.Logger;
-import org.janus.gui.enums.GuiType;
-import org.janus.table.ExtendedTableModel;
 
 /**
  * Class declaration

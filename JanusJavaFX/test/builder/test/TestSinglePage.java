@@ -2,8 +2,6 @@ package builder.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import javafx.application.Application;
-import javafx.stage.Stage;
 
 import org.janus.binder.BindWalker;
 import org.janus.binder.gui.GuiBuilderWalker;
@@ -19,8 +17,10 @@ import org.janus.gui.javafx.StageConnector;
 import org.janus.gui.javafx.builder.JavaFXGuiElementBuilder;
 import org.jdom2.Document;
 
-import toni.druck.xml.XMLDocumentLoader;
 import allgemein.SessionInterface;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import toni.druck.xml.XMLDocumentLoader;
 
 public class TestSinglePage extends Application {
 	private String pagename;

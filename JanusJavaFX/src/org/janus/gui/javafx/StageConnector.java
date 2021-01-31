@@ -4,6 +4,11 @@ import java.awt.Component;
 import java.io.Serializable;
 import java.util.List;
 
+import org.janus.data.DataContext;
+import org.janus.gui.basis.GuiComponent;
+import org.janus.gui.basis.RootGuiComponent;
+import org.janus.gui.enums.GuiType;
+
 import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.input.ContextMenuEvent;
@@ -11,11 +16,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import org.janus.data.DataContext;
-import org.janus.gui.basis.GuiComponent;
-import org.janus.gui.basis.RootGuiComponent;
-import org.janus.gui.enums.GuiType;
 
 public class StageConnector extends JavaFXBasisConnector implements
         RootGuiComponent {

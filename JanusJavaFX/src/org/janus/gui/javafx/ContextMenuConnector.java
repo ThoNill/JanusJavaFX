@@ -6,12 +6,12 @@ import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import org.janus.gui.basis.GuiComponent;
+import org.janus.gui.enums.GuiType;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-
-import org.janus.gui.basis.GuiComponent;
-import org.janus.gui.enums.GuiType;
 
 /**
  * Class declaration

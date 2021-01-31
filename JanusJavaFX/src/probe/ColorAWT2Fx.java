@@ -7,6 +7,7 @@ public class ColorAWT2Fx {
     }
 
     public static javafx.scene.text.Font convert(java.awt.Font font) {
+    	System.out.println("Font: " + font.getFontName());
         return javafx.scene.text.Font
                 .font(font.getFontName(), font.getSize2D());
     }

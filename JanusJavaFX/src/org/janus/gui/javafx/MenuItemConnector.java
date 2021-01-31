@@ -4,14 +4,13 @@ package org.janus.gui.javafx;
 
 import java.io.Serializable;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.MenuItem;
-
 import org.janus.actions.Action;
 import org.janus.gui.enums.GuiType;
 
 import allgemein.SessionInterface;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.MenuItem;
 
 /**
  * Class declaration

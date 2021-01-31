@@ -2,17 +2,17 @@ package allgemein;
 
 import java.awt.event.InputEvent;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-
 import org.apache.log4j.Logger;
 import org.janus.actions.Action;
 import org.janus.data.DataContext;
 import org.janus.dict.actions.ActionDictionary;
 import org.janus.gui.enums.MouseEvents;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 public class EventActionBinder {
     private static final Logger LOG = Logger.getLogger(SessionInterface.class);

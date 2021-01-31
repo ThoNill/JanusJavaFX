@@ -4,12 +4,12 @@ package org.janus.gui.javafx;
 
 import java.io.Serializable;
 
+import org.janus.gui.enums.GuiType;
+import org.janus.table.ExtendedTableModel;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Toggle;
-
-import org.janus.gui.enums.GuiType;
-import org.janus.table.ExtendedTableModel;
 
 /**
  * Class declaration
@@ -18,50 +18,49 @@ import org.janus.table.ExtendedTableModel;
  * @author
  * @version %I%, %G%
  */
-public class RadioConnector extends JavaFXTableModelConnector implements
-        ChangeListener<Toggle> {
+public class RadioConnector extends JavaFXTableModelConnector implements ChangeListener<Toggle> {
 
-    /**
-     * Constructor declaration
-     * 
-     * 
-     * @param node
-     * @param name
-     * @param model
-     * 
-     * @see
-     */
-    public RadioConnector(RadioGroup list) {
-        super(GuiType.RADIO, list);
-        list.addSelectionListener(this);
-    }
+	/**
+	 * Constructor declaration
+	 * 
+	 * 
+	 * @param node
+	 * @param name
+	 * @param model
+	 * 
+	 * @see
+	 */
+	public RadioConnector(RadioGroup list) {
+		super(GuiType.RADIO, list);
+		list.addSelectionListener(this);
+	}
 
-    public RadioGroup getRadioGroup() {
-        return (RadioGroup) getComponent();
-    }
+	public RadioGroup getRadioGroup() {
+		return (RadioGroup) getComponent();
+	}
 
-    @Override
-    public void changed(ObservableValue<? extends Toggle> arg0, Toggle arg1,
-            Toggle arg2) {
-        setCurrentRowInTheModel(getRadioGroup().getSelectedIndex());
-    }
+	@Override
+	public void changed(ObservableValue<? extends Toggle> arg0, Toggle arg1, Toggle arg2) {
+		setCurrentRowInTheModel(getRadioGroup().getSelectedIndex());
+	}
 
-    @Override
-    public void SelectionChanged(int pos,int column) {
-        getRadioGroup().setSelectedIndex(pos);
-    }
+	@Override
+	public void SelectionChanged(int pos, int column) {
+		if (pos >= 0) {
+			getRadioGroup().setSelectedIndex(pos);
+		}
+	}
 
-    @Override
-    public void setModel(ExtendedTableModel tm) {
-        getRadioGroup().setModel(getTableModel());
-    }
+	@Override
+	public void setModel(ExtendedTableModel tm) {
+		getRadioGroup().setModel(getTableModel());
+	}
 
-    @Override
-    public Serializable getGuiValue() {
-        return getRadioGroup().getSelectedIndex();
-    }
+	@Override
+	public Serializable getGuiValue() {
+		return getRadioGroup().getSelectedIndex();
+	}
 
 }
 
 /*--- formatting done in "Sun Java Convention" style on 11-06-2003 ---*/
-

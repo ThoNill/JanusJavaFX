@@ -1,8 +1,5 @@
 package builder.test;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
-
 import org.apache.log4j.Logger;
 import org.janus.appbuilder.AppBuilder;
 import org.janus.gui.basis.JanusApplication;
@@ -13,6 +10,9 @@ import org.janus.gui.builder.GuiElementBuilder;
 import org.janus.gui.javafx.StageConnector;
 import org.janus.gui.javafx.builder.JavaFXGuiElementBuilder;
 import org.junit.Assert;
+
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 public class TestJavaFXApp extends Application {
     private static final Logger LOG = Logger.getLogger(TestJavaFXApp.class);

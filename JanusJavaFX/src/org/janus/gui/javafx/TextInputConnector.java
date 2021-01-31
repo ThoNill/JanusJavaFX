@@ -9,6 +9,10 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+import org.janus.gui.enums.GuiType;
+import org.janus.gui.enums.KeyEventType;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -19,10 +23,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import metric.FontMetrics;
-
-import org.apache.log4j.Logger;
-import org.janus.gui.enums.GuiType;
-import org.janus.gui.enums.KeyEventType;
 
 public class TextInputConnector extends JavaFXBasisConnector implements
         ChangeListener<Boolean>, EventHandler<ActionEvent> {
@@ -61,13 +61,14 @@ public class TextInputConnector extends JavaFXBasisConnector implements
 
     @Override
     public void handle(ActionEvent arg0) {
-        setModelValue();
+          setModelValue();
     }
 
     protected void setModelValue() {
         setModelValue(getTextfield().getText());
     }
-
+    
+ 
     @Override
     protected void setGuiValueWithText(String text) {
         if (text != null && getTextfield() != null) {
