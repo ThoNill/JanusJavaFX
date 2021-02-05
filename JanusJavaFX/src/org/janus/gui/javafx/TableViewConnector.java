@@ -73,7 +73,6 @@ public class TableViewConnector extends JavaFXTableModelConnector implements
 
     private void initSelectionModel() {
         getTableView().getSelectionModel().getSelectedCells().addListener(this);
-        
     }
 
     @Override
